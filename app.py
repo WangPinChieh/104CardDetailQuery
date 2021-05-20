@@ -1,7 +1,8 @@
 from flask import Flask, request
+from waitress import serve
 from query import query_card_detail
 app = Flask(__name__, static_folder='.')
-app.config['DEBUG'] = True
+# app.config['DEBUG'] = True
 
 @app.route('/')
 def hello_world():
@@ -26,5 +27,7 @@ def query():
       test
    '''
 
-if __name__ == '__main__':
-   app.run()
+# if __name__ == '__main__':
+#    app.run()
+
+serve(app, host='0.0.0.0', port=5000, threads=1) #WAITRESS
